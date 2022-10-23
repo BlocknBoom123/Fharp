@@ -3,7 +3,7 @@
  */
 package sdp.warmup;
 
-import java.util.*; 
+import java.util.*;
 
 public class App {
 
@@ -18,20 +18,31 @@ public class App {
     public Object[] flatten(Object[][] nested) {
         List<Object> result = new ArrayList<Object>();
         for (Object[] innerList : nested) {
-        for (Object item : innerList) {
-        result.add(item);
-        }
+            for (Object item : innerList) {
+                result.add(item);
+            }
         }
         Object[] out = new Object[result.size()];
         result.toArray(out);
         return out;
-        }
-        
+    }
+
     public String getGreeting() {
         return "Get me out of here..";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Integer[] numbers = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+        App mul = new App();
+        Object[] multiplied = mul.map(numbers,
+                i -> mul.map(numbers, j -> new Sum((int) i, (int) j, (int) i * (int) j)));
+        for (Object o : multiplied) {
+            Object[] p = (Object[]) o;
+            for (Object q : p) {
+                Sum v = (Sum) q;
+                System.out.printf("%d x %d = %d\n", v.first, v.second, v.result);
+            }
+        }
     }
+
 }
