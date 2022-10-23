@@ -3,30 +3,28 @@
  */
 package sdp.warmup;
 
-import java.util.*; 
+import java.util.*;
 
 public class App {
 
-    public Object[] map(Object[] input, MapFunction f) {
-        Object[] output = new Object[input.length];
-        for (int i = 0; i < input.length; i++) {
-            output[i] = f.run(input[i]);
+    public <T> List<T> flatten(List<List<T>> nested) {
+        List<T> result = new ArrayList<T>();
+        for (List<T> innerList : nested) {
+            for (T item : innerList) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+    public List<Object> map(List<Object> input, MapFunction f) {
+        List<Object> output = new ArrayList<Object>();
+        for (int i = 0; i < input.size(); i++) {
+            output.add(f.run(input.get(i)));
         }
         return output;
     }
 
-    public Object[] flatten(Object[][] nested) {
-        List<Object> result = new ArrayList<Object>();
-        for (Object[] innerList : nested) {
-        for (Object item : innerList) {
-        result.add(item);
-        }
-        }
-        Object[] out = new Object[result.size()];
-        result.toArray(out);
-        return out;
-        }
-        
     public String getGreeting() {
         return "Get me out of here..";
     }
