@@ -7,6 +7,14 @@ import java.util.*;
 
 public class App {
 
+    public Object[] map(Object[] input, MapFunction f) {
+        Object[] output = new Object[input.length];
+        for (int i = 0; i < input.length; i++) {
+            output[i] = f.run(input[i]);
+        }
+        return output;
+    }
+
     public Object[] flatten(Object[][] nested) {
         List<Object> result = new ArrayList<Object>();
         for (Object[] innerList : nested) {
