@@ -3,9 +3,24 @@
  */
 package sdp.warmup;
 
+import java.util.*; 
+
 public class App {
+
+    public Object[] flatten(Object[][] nested) {
+        List<Object> result = new ArrayList<Object>();
+        for (Object[] innerList : nested) {
+        for (Object item : innerList) {
+        result.add(item);
+        }
+        }
+        Object[] out = new Object[result.size()];
+        result.toArray(out);
+        return out;
+        }
+        
     public String getGreeting() {
-        return "Hello World!";
+        return "Get me out of here..";
     }
 
     public static void main(String[] args) {
