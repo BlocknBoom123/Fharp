@@ -3,46 +3,12 @@
  */
 package sdp.warmup;
 
-import java.util.*;
-
 public class App {
-
-    public Object[] map(Object[] input, MapFunction f) {
-        Object[] output = new Object[input.length];
-        for (int i = 0; i < input.length; i++) {
-            output[i] = f.run(input[i]);
-        }
-        return output;
-    }
-
-    public Object[] flatten(Object[][] nested) {
-        List<Object> result = new ArrayList<Object>();
-        for (Object[] innerList : nested) {
-            for (Object item : innerList) {
-                result.add(item);
-            }
-        }
-        Object[] out = new Object[result.size()];
-        result.toArray(out);
-        return out;
-    }
-
     public String getGreeting() {
-        return "Get me out of here..";
+        return "Hello World!";
     }
 
     public static void main(String[] args) {
-        Integer[] numbers = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-        App mul = new App();
-        Object[] multiplied = mul.map(numbers,
-                i -> mul.map(numbers, j -> new Sum((int) i, (int) j, (int) i * (int) j)));
-        for (Object o : multiplied) {
-            Object[] p = (Object[]) o;
-            for (Object q : p) {
-                Sum v = (Sum) q;
-                System.out.printf("%d x %d = %d\n", v.first, v.second, v.result);
-            }
-        }
+        System.out.println(new App().getGreeting());
     }
-
 }
